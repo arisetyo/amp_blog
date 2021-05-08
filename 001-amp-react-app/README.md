@@ -13,3 +13,7 @@ This is my minimal setup to start a React app. What it contains:
 * Install the required libraries, run `npm install`
 * Run the front-end development server, `npm run dev`
 * Open the web app on `http://localhost:8000/`
+
+## Updating the libraries
+
+Use `npx npm-check-updates` -u and `npm install` to upgrade all dependencies to their latest major versions.

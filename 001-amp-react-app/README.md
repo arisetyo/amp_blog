@@ -7,6 +7,7 @@ This is my minimal setup to start a React app. What it contains:
 3. Hot loader
 4. Object rest spread feature
 5. Stateless component name
+6. 'Rubik' from Google Fonts
 
 ## How-to
 

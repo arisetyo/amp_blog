@@ -9,15 +9,21 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	padding: 8px;
-  font-size: 12pt;
+	padding: 12px;
 }
 
 .App > h1 {
-  font-size: 160%;
+	font-style: italic;
+	color: rgb(var(--primary-accent));
+}
+
+.App > p {
+	margin: 4pt 0;
+	color: var(--main-fg);
 }
 
 .App > p > code {
-  background-color: rgb(--var(--primary-accent));
-	font-family: --var(--font-mono);
+  color: rgb(var(--primary-accent));
+	font-family: var(--font-mono);
+	font-weight: bold;
 }

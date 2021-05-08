@@ -54,13 +54,16 @@ module.exports = {
             }
           },
           {
-            loader: 'postcss-loader',
+            loader: "postcss-loader",
             options: {
-              ident: 'postcss',
-              plugins: loader => [
-                require('autoprefixer')()
-              ]
-            }
+              postcssOptions: {
+                plugins: [
+                  [
+                    "autoprefixer"
+                  ],
+                ],
+              },
+            },
           }
         ],
       },

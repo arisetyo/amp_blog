@@ -2,12 +2,12 @@
 
 This is my minimal setup to start a React app. What it contains:
 
-1. ES6
-2. Modular CSS
-3. Hot loader
-4. Object rest spread feature
-5. Stateless component name
-6. 'Rubik' from Google Fonts
+1. EcmaScript support
+2. Modular CSS support
+3. Simple Node server
+4. Spread syntax
+5. Stateless component support
+6. ‘Rubik’ from Google Fonts
 
 ## How-to
 

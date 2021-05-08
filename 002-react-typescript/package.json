@@ -1,0 +1,15 @@
+{
+  "name": "react-typescript example",
+  "version": "1.0.0",
+  "description": "using TypeScript with React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "React",
+    "TypeScript"
+  ],
+  "author": "Arie M. Prasetyo",
+  "license": "ISC"
+}

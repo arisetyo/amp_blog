@@ -1,14 +1,14 @@
 {
-  "name": "react-typescript example",
+  "name": "react flow example",
   "version": "1.0.0",
-  "description": "using TypeScript with React",
+  "description": "use static typing in React with Flow",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "React",
-    "TypeScript"
+    "Flow"
   ],
   "author": "Arie M. Prasetyo",
   "license": "ISC"

@@ -16,6 +16,10 @@ In this article, I'd like to discuss static typing using Flow.
 * Run the front-end development server, `npm run dev`
 * Open the web app on `http://localhost:8000/`
 
+## Setup Flow on VSCode
+
+Install the plugin "Flow Language Support" by `flowtype`
+
 ## Using Flow
 
 * Initialize your project with `flow init`.
@@ -24,7 +28,7 @@ Do this to enable Flow on your project. It is common to have an empty .flowconfi
 
 * Start the Flow background process with `flow`.
 
-* Determine which files Flow will monitor with `// @flow`.
+* Determine which files Flow will monitor that has the `// @flow` pragma at the beginning of the file.
 
 You can also adopt Flow incrementally and easily remove it at anytime, so you can try Flow out on any codebase and see how you like it.
 

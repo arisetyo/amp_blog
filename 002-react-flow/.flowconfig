@@ -8,6 +8,8 @@
 
 [lints]
 
+# If you are using the new automatic runtime, use this configuration in your .flowconfig so that Flow knows to auto-import jsx:
 [options]
+react.runtime=automatic
 
 [strict]

@@ -9,7 +9,8 @@
 		["@babel/plugin-proposal-object-rest-spread"],
 		"transform-class-properties",
 		"transform-react-stateless-component-name",
-		"react-css-modules"
+		"react-css-modules",
+		"transform-flow-strip-types"
 	],
 	"env": {
 		"production": {
@@ -18,7 +19,8 @@
 		"test": {
 			"presets": [
 				"@babel/preset-env",
-				"@babel/preset-react"
+				"@babel/preset-react",
+				"@babel/preset-flow"
 			],
 			"plugins": [
 				["@babel/plugin-proposal-decorators", {"legacy": true}],

@@ -5,7 +5,10 @@
  */
 
 import React from 'react';
+import {multiply, retStr, retBool, retBool2, square, foo} from './someMethods';
 import styles from './App.css';
+import SimpleComponent from './SimpleComponent';
+import SimpleFunctionalComponent from './SimpleFunctionalComponent';
 
 /**
  * The main React application component
@@ -14,24 +17,8 @@ import styles from './App.css';
  * In this example, the App component is a stateless React component.
  */
 const App = () => {
-
-	// @flow
-	const square = (n: number): number => {
-		return n * n;
-	}
-
-	// @flow
-	const wrongreturn = (n: number): string => {
-		return 450;
-	}
-
-	// @flow
-	function foo(x: ?number): string {
-		if (x) {
-			return x;
-		}
-		return "default string";
-	}
+	
+	const x = 3;
 
 	return (
 		<div
@@ -43,8 +30,13 @@ const App = () => {
 				Static typing using Flow
 			</p>
 
-			<h2>{square('a')}</h2>
-			<h2>{square(16)}</h2>
+			<p>{square(x)}</p>
+			<p>{square(16)}</p>
+			<p>{multiply(14, 12)}</p>
+
+			<SimpleFunctionalComponent text={'This is some text'} addExclamationMark={true}/>
+
+			<SimpleComponent foo={'42'} bar={'is the meaning of life'}/>
 	
 		</div>	
 	)

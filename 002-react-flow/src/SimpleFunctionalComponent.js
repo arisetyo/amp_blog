@@ -8,7 +8,7 @@
 
 // We need to import React types
 import type {Node} from "react";
-import React, {Component} from 'react';
+import React from 'react';
 
 /**
  * A simple component
@@ -24,7 +24,7 @@ type Props = {
 function SimpleFunctionalComponent({text, addExclamationMark}: Props): Node {
   return (
 		<div>
-			<h2>Simple Functional Component</h2>
+			<h2>Simple functional Component</h2>
 			{`${text}${addExclamationMark ? '!' : ''}`}
 		</div>
 	);
@@ -36,7 +36,7 @@ function SimpleFunctionalComponent({text, addExclamationMark}: Props): Node {
 const SimpleFunctionalComponent = ({text, addExclamationMark}: Props): Node => {
 	return (
 		<div>
-			<h2>Simple Functional Component</h2>
+			<h2>Simple functional Component</h2>
       {`${text}${addExclamationMark ? '!' : ''}`}
 		</div>
 	)

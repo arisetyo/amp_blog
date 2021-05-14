@@ -1,43 +1,51 @@
-# Static typing with Flow
+# Static typing with Flow in React
 
-In my JavaScript applications, there are three layers of code "safety" that I like to add:
+In my React/JavaScript applications, there are three layers of development "safety" that I always add:
 
 1. ESLint, to make sure the code follows a certain standard
 2. Unit testing, to make sure the codes are testable
 3. Static typing, to add clarity and reduce confusion
 
-In this article, I'd like to discuss static typing using Flow.
-
-## How-to
-
-* Install the required libraries, run `npm install`
-* Initialise Flow `npm run flow init`
-* Run Flow `npm run flow`
-* Run the front-end development server, `npm run dev`
-* Open the web app on `http://localhost:8000/`
+In [this article](https://arie-m-prasetyo.medium.com/static-typing-with-flow-in-react-981e131230af), I'll be discussing on how to start using static typing with [Flow](https://flow.org/) on React applications.
 
 ## Setup Flow on VSCode
 
-Install the plugin "Flow Language Support" by `flowtype`
+Install the plugin "Flow Language Support" by [flowtype](https://github.com/flowtype/flow-for-vscode).
 
-## Using Flow
+**Note**
 
-* Initialize your project with `flow init`.
+> If you're using VSCode, you need disable its built-in TypeScript support, because might clashes with Flow's plugin. You can search it by typing `@builtin TypeScript` in the extensions tab of VSCode and then disable it. Check [here](https://github.com/flowtype/flow-for-vscode#setup) for more information.
 
-Do this to enable Flow on your project. It is common to have an empty .flowconfig file for your project. However, you can [configure and customize Flow](https://flow.org/en/docs/config/) in many ways through options available to be added to `.flowconfig`.
+Any static-typing errors/warnings will be shown by VSCode.
 
-* Start the Flow background process with `flow`.
+## How-to use the example
 
-* Determine which files Flow will monitor that has the `// @flow` pragma at the beginning of the file.
+### Prepare the app
+After you clone the repository, go to the directory `002-react-flow`.
 
-You can also adopt Flow incrementally and easily remove it at anytime, so you can try Flow out on any codebase and see how you like it.
+Install the required libraries:
+```
+$ npm install
+```
 
----
+On the article you need to initialise Flow by using this command:
+```
+$ npm run flow init
+```
+This command will create the `.flowconfig` file. You don't have to do that with the example on `002-react-flow` because the configuration file already exists.
 
-## Note
+### Run the servers
 
-If you're using VSCode, disable its built-in TypeScript support that might clashes with Flow.
+I've included the script for running Flow in `package.json`. To run Flow's server and see any static typing related errors, simply type:
 
-Search `@builtin TypeScript` in the extensions tab.
+```
+$ npm run flow
+```
 
-Check [here](https://github.com/flowtype/flow-for-vscode#setup) for more information.
+Run the front-end development server, to see the app in action.
+
+```
+npm run dev
+```
+
+Open the web app on `http://localhost:8000/`

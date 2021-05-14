@@ -27,3 +27,16 @@
 	font-family: var(--font-mono);
 	font-weight: bold;
 }
+
+.App > div {
+	padding: 8pt 0;
+}
+
+.App > div > h2 {
+	font-style: italic;
+	font-weight: 600;
+}
+
+.App > div > em {
+	color: rgb(var(--primary-accent));
+}

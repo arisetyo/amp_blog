@@ -24,6 +24,7 @@ type Props = {
 function SimpleFunctionalComponent({text, addExclamationMark}: Props): Node {
   return (
 		<div>
+			<h2>Simple Functional Component</h2>
 			{`${text}${addExclamationMark ? '!' : ''}`}
 		</div>
 	);
@@ -35,6 +36,7 @@ function SimpleFunctionalComponent({text, addExclamationMark}: Props): Node {
 const SimpleFunctionalComponent = ({text, addExclamationMark}: Props): Node => {
 	return (
 		<div>
+			<h2>Simple Functional Component</h2>
       {`${text}${addExclamationMark ? '!' : ''}`}
 		</div>
 	)

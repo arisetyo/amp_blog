@@ -9,6 +9,7 @@ import {multiply, retStr, retBool, retBool2, square, foo} from './someMethods';
 import styles from './App.css';
 import SimpleComponent from './SimpleComponent';
 import SimpleFunctionalComponent from './SimpleFunctionalComponent';
+import NoFlowComponent from './NoFlowComponent';
 
 /**
  * The main React application component
@@ -30,13 +31,18 @@ const App = () => {
 				Static typing using Flow
 			</p>
 
-			<p>{square(x)}</p>
-			<p>{square(16)}</p>
-			<p>{multiply(14, 12)}</p>
+			<div>
+				<h2>Functions written with Flow</h2>
+				<p>{square(x)}</p>
+				<p>{square(16)}</p>
+				<p>{multiply(14, 12)}</p>
+			</div>
 
 			<SimpleFunctionalComponent text={'This is some text'} addExclamationMark={true}/>
 
 			<SimpleComponent foo={'42'} bar={'is the meaning of life'}/>
+
+			<NoFlowComponent/>
 	
 		</div>	
 	)

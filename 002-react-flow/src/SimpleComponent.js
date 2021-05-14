@@ -41,6 +41,7 @@ class SimpleComponent extends Component<Props, State> {
 
     return (
       <div>
+        <h2>Simple Component</h2>
         {this.props.foo} {this.props.bar}
         <br/>
         Count: {this.state.count}

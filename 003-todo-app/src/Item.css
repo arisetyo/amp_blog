@@ -1,0 +1,10 @@
+/**
+ * @author Arie M. Prasetyo
+ * @copyright 2021
+ */
+
+ .Item {
+   background-color: rgba(var(--primary-accent), 0.2);
+   padding: 4px 0;
+   margin: 2px 0;
+ }

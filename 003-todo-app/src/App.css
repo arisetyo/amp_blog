@@ -4,26 +4,39 @@
  */
 
  .App {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
+	width: 600px;
+	height: 100%;
+	margin: 0 auto;
 	padding: 12px;
+	background-color: var(--main-bg);
+	border-left: 1px var(--main-fg) solid;
+	border-right: 1px var(--main-fg) solid;
+	display: flex;
+	flex-direction: column;
 }
 
 .App > h1 {
 	font-style: italic;
 	color: rgb(var(--primary-accent));
+	align-self: center;
+	margin-bottom: 24px;
 }
 
-.App > p {
-	margin: 4pt 0;
+.App > summary {
 	color: var(--main-fg);
+	font-size: 0.8em;
 }
 
-.App > p > code {
-  color: rgb(var(--primary-accent));
-	font-family: var(--font-mono);
-	font-weight: bold;
+.App > .itemContainer {
+	margin: 10px 0;
+	padding: 6px;
+	border: 1px var(--main-fg) solid;
+	max-height: 300px;
+	overflow-y: scroll;
+}
+
+.App > footer {
+	font-size: .8em;
+	margin-top: auto;
+	padding-bottom: 20px;
 }

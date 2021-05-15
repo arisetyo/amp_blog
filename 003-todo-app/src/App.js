@@ -7,23 +7,38 @@
 import React from 'react';
 import styles from './App.css';
 
+import Item from './Item';
+import AddButton from './AddButton';
+
 /**
  * The main React application component
- * 
- * Note:
- * In this example, the App component is a stateless React component.
  */
-const App = () => (
-	<div
-		className={styles.App}>
-		
-		<h1>Hello world!</h1>
+const App = () => {
 
-		<p>
-			This is <code>amp-react-app</code> 👋🏽
-		</p>
+	// render the items
+	const openItemData = [0,0,0,0,0,0];
+	const itemComponents = openItemData.map( i => <Item/>);
 
-	</div>	
-);
+	return (
+		<div
+			className={styles.App}>
+			
+			<h1>My To-do app</h1>
+			<summary>Open list: {openItemData.length}</summary>
+
+			<AddButton/>
+
+			<div
+				className={styles.itemContainer}>
+				
+				{itemComponents}
+			</div>
+
+			<summary>Completed list: 0</summary>
+			<footer>&copy; Arie M. Prasetyo, 2021</footer>
+
+		</div>	
+	)
+};
 
 export default App;

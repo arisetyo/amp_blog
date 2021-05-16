@@ -4,10 +4,17 @@
  * @copyright 2021
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './AddButton.css';
 
+/**
+ * This component has state:
+ * adding (boolean)
+ */
 const AddButton = () => {
+  // set the state
+  const [adding, setAdding] = useState(false);
+
   return (
     <div
       className={styles.AddButton}>

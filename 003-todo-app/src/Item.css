@@ -3,8 +3,31 @@
  * @copyright 2021
  */
 
- .Item {
-   background-color: rgba(var(--primary-accent), 0.2);
-   padding: 4px 0;
-   margin: 2px 0;
- }
+.Item {
+  background-color: rgba(var(--primary-accent), 0.2);
+  padding: 8px 6px;
+  margin: 2px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Item > span {
+  user-select: none;
+}
+
+.Item > span.done {
+  text-decoration: line-through;
+  color: #A0A0A0;
+}
+
+.Item > button {
+  padding: 2px;
+  cursor: pointer;
+}
+
+.Item > input[type="text"] {
+  padding: 4px;
+  width: 100%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.8);
+}

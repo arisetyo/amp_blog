@@ -1,0 +1,38 @@
+body {
+  font-family: "Roboto", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: 1px;
+  padding: 20px;
+}
+
+p {
+  width: 100%;
+}
+
+button {
+  height: 42px;
+  padding: 0 30px;
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  cursor: pointer;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #5c2172;
+}
+
+.trigger-push {
+  background-color: #290735;
+  letter-spacing: 1px;
+}
+
+span {
+  background-color: #823e9b;
+  padding: 2px;
+  border-radius: 2px;
+  font-size: 90%;
+  color: white;
+}

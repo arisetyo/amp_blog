@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Push notifications using Node.js and web-push</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Example client</h1>
+
+  <p>
+    This will trigger an API call to the backend that will push a notification. Then the browser's <span>serviceWorker</span> will capture it and display it as a notification.
+  </p>
+
+  <button class="trigger-push">Trigger push notification</button>
+
+  <hr/>
+
+  <h2>What Are Web Push Notifications?</h2>
+  <p>Web Push Notifications or Browser notifications are notifications that your website visitors can opt-in to receive to stay updated without installing your app. These clickable rich content messages can be sent to users’ devices by a website or a web app. </p>
+
+  <h2>How push works</h2>
+  <p>
+    The three key steps to implementing push are:
+    <br/>
+    <ul>
+      <li>Adding the client side logic to subscribe a user to push (i.e. the JavaScript and UI in your web app that registers a user to push messages).</li>
+      <li>The API call from your back-end / application that triggers a push message to a user's device.</li>
+      <li>The service worker JavaScript file that will receive a "push event" when the push arrives on the device. It's in this JavaScript that you'll be able to show a notification.</li>
+    </ul>
+  </p>
+  <h3>Client Side</h3>
+  <p>
+    The first step is to "subscribe" a user to push messaging. Subscribing a user requires two things. First, getting permission from the user to send them push messages. Second, getting a <em>PushSubscription</em> from the browser. A <em>PushSubscription</em> contains all the information we need to send a push message to that user. You can "kind of" think of this as an ID for that user's device. This is all done in JavaScript with the Push API.
+  </p>
+  <p>
+    Before subscribing a user you'll need to generate a set of "application server keys". The application server keys, also known as <strong>VAPID</strong> keys, are unique to your server. They allow a push service to <em>know which application server subscribed a user</em> and ensure that it's the same server triggering the push messages to that user.
+  </p>
+  <p>
+    Application server keys are a public and private key pair that are unique to your application. The private key should be kept a secret to your application and the public key can be shared freely.
+  </p>
+  <p>
+    Once you've subscribed the user and have a PushSubscription, you'll need to send the PushSubscription details to your backend / server. On your server, you'll save this subscription to a database and use it to send a push message to that user.<br/>
+  </p>
+  
+  <h3>How to Create Application Server Keys</h3>
+  <p>
+    You can create a public and private set of application server keys by visiting web-push-codelab.glitch.me or you can use the web-push command line to generate keys by doing the following:
+  </p>
+  <pre><code>
+$ npm install -g web-push
+$ web-push generate-vapid-keys
+  </code></pre>
+  
+  <h3>Who and What is the Push Service?</h3>
+  <p>
+    A push service receives a network request, validates it and delivers a push message to the appropriate browser. <strong>If the browser is offline, the message is queued until the the browser comes online</strong>.
+  </p>
+  <p>
+    Each browser can use any push service they want, it's something developers have no control over. This isn't a problem because every push service expects the same API call. Meaning you don't have to care who the push service is. You just need to make sure that your API call is valid.
+  </p>
+
+  <h3>Push Event on the User's Device</h3>
+  <p>
+    When the push service does deliver a message, the browser will receive the message, decrypt any data and dispatch a push event in your service worker.
+  </p>
+  <p>
+    A service worker is a "special" JavaScript file. The browser can execute this JavaScript without your page being open. It can even execute this JavaScript when the browser is closed. A service worker also has API's, like push, that aren't available in the web page (i.e. API's that aren't available out of a service worker script).
+  </p>
+  <p>
+    <a href="https://developers.google.com/web/fundamentals/push-notifications/how-push-works">Reference</a>
+  </p>
+
+  <hr/>
+  <h2>Feature Detection</h2>
+  <p>
+    First we need to check if the current browser actually supports push messaging. We can check if push is supported with two simple checks.
+  </p>
+  <ol>
+    <li>Check for <span>serviceWorker</span> on navigator.</li>
+    <li>Check for <span>PushManager</span> on window.</li>
+  </ol>
+  <p>
+    With the feature detect we know that both service workers and Push are supported. The next step is to "register" our service worker.
+  </p>
+
+  <pre><code>
+if (!('serviceWorker' in navigator)) {
+  // Service Worker isn't supported on this browser, disable or hide UI.
+  return;
+}
+
+if (!('PushManager' in window)) {
+  // Push isn't supported on this browser, disable or hide UI.
+  return;
+}    
+  </code></pre>
+
+  <p>
+    When we register a service worker, we are telling the browser where our service worker file is. The file is still just JavaScript, but the browser will "give it access" to the service worker APIs, including push. To be more exact, the browser runs the file in a service worker environment.
+  </p>
+  <p>
+    To register a service worker, call <span>navigator.serviceWorker.register()</span>, passing in the path to our file. 
+  </p>
+
+  <p>
+    This function tells the browser that we have a service worker file and where it's located. In this case, the service worker file is at /service-worker.js. Behind the scenes the browser will take the following steps after calling <span>register()</span>:<br/>
+  </p>
+  <ol>
+    <li>Download the service worker file.</li>
+    <li>Run the JavaScript.</li>
+    <li>If everything runs correctly and there are no errors, the promise returned by register() will resolve. If there are errors of any kind, the promise will reject.</li>
+  </ol>
+
+  <p>
+    We've registered our service worker and are ready to subscribe the user, the next step is to get permission from the user to send them push messages.
+  </p>
+
+  <p>
+    Once we have our service worker registered and we've got permission, we can subscribe a user by calling <span>registration.pushManager.subscribe()</span>.
+  </p>
+
+  <hr/>
+  <h2>What is a service worker</h2>
+  <p>
+    A service worker is a script that your browser runs in the background, separate from a web page, opening the door to features that don't need a web page or user interaction. Today, they already include features like push notifications and background sync. In the future, service workers might support other things like periodic sync or geofencing. The core feature discussed in this tutorial is the ability to intercept and handle network requests, including programmatically managing a cache of responses.
+    <br/>
+    <a href="https://developers.google.com/web/fundamentals/primers/service-workers">Reference</a>
+  </p>
+
+  <pre><code>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, function(err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  });
+}
+  </code></pre>
+
+  <hr/>
+  <h2>A little notification anatomy</h2>
+  <p>
+    In the next section we're going to throw a bunch of pictures at you, but we promised code. So, here it is. With a service worker registration you call showNotification on a registration object.
+    <br/>
+    <a href="https://developers.google.com/web/fundamentals/push-notifications">Reference</a>
+  </p>
+
+  <pre><code>
+serviceWorkerRegistration.showNotification(title, options);
+  </code></pre>
+
+  <hr/>
+  <h2>The Push Event</h2>
+  <p>When a message is received, it'll result in a push event being dispatched in your service worker.</p>
+  <p>The code for setting up a push event listener should be pretty similar to any other event listener you'd write in JavaScript:</p>
+  <pre><code>
+self.addEventListener('push', function(event) {
+  if (event.data) {
+    console.log('This push event has data: ', event.data.text());
+  } else {
+    console.log('This push event has no data.');
+  }
+});
+  </code></pre>
+  <p>In the example above, self.addEventListener() can be thought of as adding an event listener to the service worker itself. Inside the push event example, we check if there is any data and print something to the console.</p>
+
+
+  <hr/>
+  <h2>Visual Options</h2>
+  <p>The API for showing a notification is simply:</p>
+  <pre><code>
+{ServiceWorkerRegistration}.showNotification({title}, {options});
+  </code></pre>
+  <p>Where the title is a string and options can be any of the following:</p>
+  <pre><code>
+{
+  "//": "Visual Options",
+  "body": "String",
+  "icon": "URL String",
+  "image": "URL String",
+  "badge": "URL String",
+  "vibrate": "Array of Integers",
+  "sound": "URL String",
+  "dir": "String of ['auto' | 'ltr' | 'rtl']",
+
+  "//": "Behavioral Options",
+  "tag": "String",
+  "data": "Anything",
+  "requireInteraction": "boolean",
+  "renotify": "boolean",
+  "silent": "boolean",
+
+  "//": "Both visual & behavioral options",
+  "actions": "Array of Strings",
+
+  "//": "Information Option. No visual affect.",
+  "timestamp": "Long"
+}
+  </code></pre>
+  <a href="https://developers.google.com/web/fundamentals/push-notifications/display-a-notification">Reference</a>
+
+  <!--  -->
+  <script src="main.js"></script>
+</body>
+</html>

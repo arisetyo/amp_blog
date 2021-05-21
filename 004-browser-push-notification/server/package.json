@@ -1,0 +1,24 @@
+{
+  "name": "push-notif-server",
+  "version": "1.0.0",
+  "description": "push notification server",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^9.0.2",
+    "express": "^4.17.1",
+    "web-push": "^3.4.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "web",
+    "push",
+    "browser"
+  ],
+  "author": "Arie M. Prasetyo",
+  "license": "ISC"
+}

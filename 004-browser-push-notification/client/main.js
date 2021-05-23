@@ -32,21 +32,24 @@ async function triggerPushNotification() {
 
   /**
    * register the service worker,
-   * it needs to be in a different file
+   * which needs to be stored as a different file
    */
   if ('serviceWorker' in navigator) {
-    /** register the browser's serviceWorker, assign to a variable */
-    const register = await navigator.serviceWorker.register('/sw.js', {
+    /** 1. register the browser's serviceWorker, assign to variable `register` */
+    const register = await navigator.serviceWorker.register('/sw.js', { // <================= register script in `sw.js` as a browser serviceWorker
       scope: '/'
     });
 
-    /** make the register variable to subscribe to the pushManager  */
-    const subscription = await register.pushManager.subscribe({
+    /** 2. make the register variable to subscribe to the pushManager, assign as `subscription` variable  */
+    const subscription = await register.pushManager.subscribe({ // <================= subscribe the registered serviceWorker to a channel identified by the VAPID key
       userVisibleOnly: true,
       applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
     });
 
-    /** call the backend API to trigger webPush.sendNotification */
+    /** 
+     * 3. call the backend API to trigger webPush.sendNotification,
+     *    send the subscription information (as `subscription` variable) to the backend
+     */
     await fetch('/subscribe', {
       method: 'POST',
       body: JSON.stringify(subscription),

@@ -19,15 +19,18 @@ app.use(express.static(path.join(__dirname, '../client')));
 
 /**
  *  1. get VAPID keys
+ *     The application server keys, also known as VAPID keys, are unique to your server. 
+ *     They allow a push service to know which application server subscribed a user and ensure that it's the same server triggering the push messages to that user.
  */
 const publicVapidKey = process.env.PUBLIC_VAPID_KEY;
 const privateVapidKey = process.env.PRIVATE_VAPID_KEY;
 webPush.setVapidDetails('mailto:test@example.com', publicVapidKey, privateVapidKey);
 
 /**
- * 2. handle the "subscribe" request
+ * 2. handle request for "subscribe" API endpoint from the client
  */
 app.post('/subscribe', (req, res) => {
+  /** receives the subscription information from the client */
   const subscription = req.body
 
   res.status(201).json({});
@@ -42,6 +45,7 @@ app.post('/subscribe', (req, res) => {
 
   /**
    * 4. push the notification
+   *    use the subcription information received from the client, back to the client, to trigger the serviceWorker
    */
   webPush
   .sendNotification(subscription, payload)

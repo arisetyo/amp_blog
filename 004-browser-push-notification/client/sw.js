@@ -15,6 +15,7 @@ self.addEventListener('push', event => {
   /** 
    * when this registered & subscribed service worker receives (`sw.js`) a "push" event, 
    * show the browser notification popup, using the data sent from server's webPush.sendNotification.
+   * For more information on notification visual options: https://developers.google.com/web/fundamentals/push-notifications/display-a-notification
    */
   self.registration.showNotification(
     data.title, 

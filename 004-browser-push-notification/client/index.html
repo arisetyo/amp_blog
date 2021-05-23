@@ -132,6 +132,17 @@ if (!('PushManager' in window)) {
     <br/>
     <a href="https://developers.google.com/web/fundamentals/primers/service-workers">Reference</a>
   </p>
+  <p>
+    A service worker has a lifecycle that is completely separate from your web page. To install a service worker for your site, you need to register it, which you do in your page's JavaScript. Registering a service worker will cause the browser to start the service worker install step in the background.
+  </p>
+  <p>
+    Typically during the install step, you'll want to cache some static assets. If all the files are cached successfully, then the service worker becomes installed. If any of the files fail to download and cache, then the install step will fail and the service worker won't activate (i.e. won't be installed). If that happens, don't worry, it'll try again next time. But that means if it does install, you know you've got those static assets in the cache.
+  </p>
+
+  <h3>Browser support</h3>
+  <p>
+    Browser options are growing. Service workers are supported by Chrome, Firefox and Opera. Microsoft Edge is now showing public support. Even Safari has dropped hints of future development. 
+  </p>
 
   <pre><code>
 if ('serviceWorker' in navigator) {

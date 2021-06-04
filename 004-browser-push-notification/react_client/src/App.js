@@ -51,7 +51,7 @@ const sendRequest = async () => {
   }
 
   // 1. Register `sw.js` as a service worker, assign to variable `register`
-  const register = await navigator.serviceWorker.register('./sw.js', {
+  const register = await navigator.serviceWorker.register('/sw.js', {
     scope: '/'
   });
 

@@ -10,7 +10,7 @@ self.addEventListener('push', event => {
   // determine the visual option on the browser notification
   const options = {
     body: data.message,
-    icon: '/static/notification_image.png'
+    icon: '/assets/notification_image.png'
   };
 
   self.registration.showNotification( data.title, options );

@@ -85,7 +85,9 @@ module.exports = {
     }),
     new CopyWebpackPlugin({
       patterns: [
-        {from: __dirname + '/static/index.css', to: __dirname + '/build/index.css'}
+        {from: __dirname + '/static/index.css', to: __dirname + '/build/index.css'},
+        {from: __dirname + '/static/sw.js', to: __dirname + '/build/sw.js'},
+        {from: __dirname + '/static/notification_image.png', to: __dirname + '/build/notification_image.png'}
       ]
     })
   ],

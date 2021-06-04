@@ -71,7 +71,6 @@ app.post('/subscribe', (req, res) => {
     title: 'Halo, para pemirsa!',
     message: 'Acara akan segera dimulai. Ayo segera bergabung ke situs kami!'
   });
-  console.log(payload);
 
   /**
    * 4. push the notification

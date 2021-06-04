@@ -7,6 +7,7 @@
 import React from 'react';
 import styles from './App.css';
 import axios from 'axios';
+import { urlBase64ToUint8Array, publicVapidKey } from './helpers';
 
 /**
  * The main React application component
@@ -37,23 +38,9 @@ const App = () => (
 	</div>	
 );
 
-// sending request for push notification
-const sendRequest = () => {
-	axios.get('http://localhost:3500/ping')
-	.then( response => {
-		// handle success
-		console.log(response.data);
-	})
-	.catch( error => {
-		// handle error
-		console.log(error);
-	});
-};
-
-/** Trigger the push notification */
-async function triggerPushNotification() {
-
-  if (!('serviceWorker' in navigator)) {
+/** trigger push notification */
+const sendRequest = async () => {
+	if (!('serviceWorker' in navigator)) {
     console.error('Service workers are not supported in this browser');
     return;
   }
@@ -63,31 +50,29 @@ async function triggerPushNotification() {
     return;
   }
 
-  /** 1. Register `sw.js` as a service worker, assign to variable `register` */
+  // 1. Register `sw.js` as a service worker, assign to variable `register`
   const register = await navigator.serviceWorker.register('./sw.js', {
     scope: '/'
   });
 
-  /** 
-    * 2. Make the register variable to subscribe to the pushManager, assign as `subscription` variable.
-    *    Subscribe the registered serviceWorker to a channel identified by the VAPID key.
-    */
+	// 2. Make the register variable to subscribe to the pushManager, assign as `subscription` variable.
   const subscription = await register.pushManager.subscribe({
     userVisibleOnly: true,
     applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
   });
 
-  /** 
-    * 3. Call the backend API to trigger webPush.sendNotification,
-    *    then send the subscription information (as `subscription` variable) to the backend
-    */
-  await fetch('/subscribe', {
-    method: 'POST',
-    body: JSON.stringify(subscription),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-}
+	const headers = {'Content-Type': 'application/json'};
+	const body = JSON.stringify(subscription);
+
+	// 3. Call the backend API to trigger webPush.sendNotification, then send the subscription information (as `subscription` variable) to the backend
+	await axios.post('http://localhost:3500/subscribe', body, {headers})
+	.then( response => {
+		console.log(response.data);
+	})
+	.catch( error => {
+		console.log(error);
+	});
+
+};
 
 export default App;

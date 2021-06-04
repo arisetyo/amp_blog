@@ -14,3 +14,8 @@ const urlBase64ToUint8Array = base64String => {
 
 // public vapid key
 const publicVapidKey = 'BILQKGKJB72BuLZWmOrk1xrzsPU1qO-NtUOY9tZxO5xB7ebhGODHr_XZ1wDqXWXmK5znsosbdicA-m4a0tIYems';
+
+export {
+  urlBase64ToUint8Array,
+  publicVapidKey
+}

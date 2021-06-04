@@ -2,11 +2,10 @@
 	font-family: 'Rubik', Arial, Helvetica, sans-serif;
 }
 
-/* Color theme: Fashion (Michelle Watt) */
 :root {
 	--main-bg: #FEFEFE;
 	--main-fg: #4a4a4a;
-	--primary-accent: 69, 144, 210;
+	--primary-accent: 130, 62, 155;
 	--font-mono: 'Courier New', Courier, monospace;
 }
 
@@ -18,6 +17,9 @@ html {
 body {
 	height: 100%;
 	overflow: auto;
+	font-family: "Roboto", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: 1px;
+  padding: 20px;
 }
 
 /* RESET STYLING */

@@ -14,6 +14,7 @@
   "author": "Arie M. Prasetyo",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "babel-plugin-react-css-modules": "^5.2.6",
     "react": "^17.0.2",
     "react-css-modules": "^4.7.11",

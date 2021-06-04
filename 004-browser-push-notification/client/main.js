@@ -4,9 +4,7 @@
  * @copyright 2021
  */
 
-/**
- * function to encode Vapid public key
- */
+/** function to encode Vapid public key */
 function urlBase64ToUint8Array(base64String) {
   const padding = '='.repeat((4 - base64String.length % 4) % 4);
   const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
@@ -20,35 +18,31 @@ function urlBase64ToUint8Array(base64String) {
   return outputArray;
 }
 
-/**
- * Vapid public key
- */
+/** Vapid public key */
 const publicVapidKey = 'BNmRjiaZVBSDA55dlhFEJlitYuMkCbOpFVahHEuwImGzy-zdWQJMYexBYRK107JVrKXjKldezCl35hGoVWV5kYs';
 
-/**
- * trigger the push notification
- */
+/** Trigger the push notification */
 async function triggerPushNotification() {
 
-  /**
-   * register the service worker,
-   * which needs to be stored as a different file
-   */
+  /** Register the service worker, which needs to be stored as a different file */
   if ('serviceWorker' in navigator) {
-    /** 1. register the browser's serviceWorker, assign to variable `register` */
-    const register = await navigator.serviceWorker.register('/sw.js', { // <================= register script in `sw.js` as a browser serviceWorker
+    /** 1. Register `sw.js` as a service worker, assign to variable `register` */
+    const register = await navigator.serviceWorker.register('/sw.js', {
       scope: '/'
     });
 
-    /** 2. make the register variable to subscribe to the pushManager, assign as `subscription` variable  */
-    const subscription = await register.pushManager.subscribe({ // <================= subscribe the registered serviceWorker to a channel identified by the VAPID key
+    /** 
+     * 2. Make the register variable to subscribe to the pushManager, assign as `subscription` variable.
+     *    Subscribe the registered serviceWorker to a channel identified by the VAPID key.
+     */
+    const subscription = await register.pushManager.subscribe({
       userVisibleOnly: true,
       applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
     });
 
     /** 
-     * 3. call the backend API to trigger webPush.sendNotification,
-     *    send the subscription information (as `subscription` variable) to the backend
+     * 3. Call the backend API to trigger webPush.sendNotification,
+     *    then send the subscription information (as `subscription` variable) to the backend
      */
     await fetch('/subscribe', {
       method: 'POST',

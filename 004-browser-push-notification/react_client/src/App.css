@@ -9,21 +9,50 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	padding: 12px;
+	padding: 20px;
 }
 
 .App > h1 {
-	font-style: italic;
 	color: rgb(var(--primary-accent));
 }
 
 .App > p {
-	margin: 4pt 0;
+	margin: 14pt 0;
 	color: var(--main-fg);
+	width: 100%;
 }
 
 .App > p > code {
   color: rgb(var(--primary-accent));
 	font-family: var(--font-mono);
 	font-weight: bold;
+}
+
+.App > button {
+  height: 42px;
+  padding: 0 30px;
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  cursor: pointer;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 4px;
+}
+
+.App > button:hover {
+  background-color: #5c2172;
+}
+
+.App > .triggerPush {
+  background-color: #290735;
+  letter-spacing: 1px;
+}
+
+.App > span {
+  background-color: #823e9b;
+  padding: 2px;
+  border-radius: 2px;
+  font-size: 90%;
+  color: white;
 }

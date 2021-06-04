@@ -41,7 +41,7 @@ const sendRequest = () => {
 	axios.get('http://localhost:3500/ping')
 	.then( response => {
 		// handle success
-		console.log(response);
+		console.log(response.data);
 	})
 	.catch( error => {
 		// handle error

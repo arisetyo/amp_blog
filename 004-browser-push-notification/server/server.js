@@ -30,11 +30,24 @@ app.get('/ping', (_, res) => {
   res.send({status: 'success'});
 });
 
+/**
+  * Get VAPID keys if we don't have it yet
+  * You can also try: `$ web-push generate-vapid-keys`
+  * or 
+  * go to: http://web-push-codelab.glitch.me/
+  */
+app.get('/getvapidkeys', (_, res) => {
+  const vapidKeys = webPush.generateVAPIDKeys();
+
+  res.send({
+    publicKey: vapidKeys.publicKey, 
+    privateKey: vapidKeys.privateKey
+  });
+});
+
 
 /**
  *  1. get VAPID keys
- *     `$ web-push generate-vapid-keys`
- *     or go to http://web-push-codelab.glitch.me/
  *     The application server keys, also known as VAPID keys, are unique to your server. 
  *     They allow a push service to know which application server subscribed a user and ensure that it's the same server triggering the push messages to that user.
  */
@@ -58,6 +71,7 @@ app.post('/subscribe', (req, res) => {
     title: 'Halo, para pemirsa!',
     message: 'Acara akan segera dimulai. Ayo segera bergabung ke situs kami!'
   });
+  console.log(payload);
 
   /**
    * 4. push the notification

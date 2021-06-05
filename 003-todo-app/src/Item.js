@@ -4,20 +4,36 @@
  * @copyright 2021
  */
 
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useContext} from 'react';
 import styles from './Item.css';
+import ItemsContext from './ItemsContext';
 
-const Item = ({id, itemTodo, isDone}) => {
+const Item = ({itemId, itemTodo, isDone}) => {
+
+  const {data, changeData} = useContext(ItemsContext);
 
   // handler for item removal
-  const removeItemHandler = (e, id) => {
+  const removeItemHandler = e => {
     e.preventDefault();
-    removeItem(id);
+
+    const tempData = [...data];
+    
+    const objIndex = tempData.findIndex((obj => obj.itemId === itemId));
+    tempData.splice(objIndex, 1);
+
+    changeData(tempData);
   }
 
-  // function to remove an item from the to-do list
-  const removeItem = id => {
-    console.log(`REMOVING ITEM ${id}`);
+  // handler for setting item as done
+  const setDoneHandler = e => {
+    e.preventDefault();
+    
+    const tempData = [...data];
+    
+    const objIndex = tempData.findIndex((obj => obj.itemId === itemId));
+    tempData[objIndex].isDone = !tempData[objIndex].isDone;
+
+    changeData(tempData);
   }
 
   return (
@@ -25,11 +41,12 @@ const Item = ({id, itemTodo, isDone}) => {
       className={styles.Item}>
 
       <span
-        className={isDone ? styles.done : ''}>
+        className={isDone ? styles.done : ''}
+        onClick={e => setDoneHandler(e)}>
         {itemTodo}
       </span>
 
-      <button onClick={e => removeItemHandler(e, id)}>
+      <button onClick={e => removeItemHandler(e)}>
         ✕
       </button>
 

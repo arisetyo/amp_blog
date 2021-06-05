@@ -18,7 +18,7 @@ const ItemsList = () => {
 		return (
 			<Item
 				key={index}
-				id={index}
+				itemId={i.itemId}
 				itemTodo={i.itemTodo}
 				isDone={i.isDone}/>
 		)

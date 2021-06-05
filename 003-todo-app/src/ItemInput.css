@@ -1,0 +1,18 @@
+/**
+ * @author Arie M. Prasetyo
+ * @copyright 2021
+ */
+
+ .ItemInput {
+   margin: 12px 0 0 0;
+   padding: 12px 8px;
+   background-color: rgba(var(--primary-accent), 0.8);
+ }
+ 
+ .ItemInput > input[type="text"] {
+  padding: 4px;
+  width: 100%;
+  border: none;
+  background-color: white;
+  outline: none;
+}

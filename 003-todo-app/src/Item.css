@@ -21,13 +21,8 @@
 }
 
 .Item > button {
-  padding: 2px;
-  cursor: pointer;
-}
-
-.Item > input[type="text"] {
   padding: 4px;
-  width: 100%;
-  border: none;
-  background-color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
 }

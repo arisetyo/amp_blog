@@ -8,36 +8,28 @@ import React from 'react';
 import styles from './App.css';
 
 import Item from './Item';
-import AddButton from './AddButton';
+import ItemInput from './ItemInput';
 
 /**
  * The main React application component
  */
 const App = () => {
 
-	/**
-	 * Render the items
-	 * 
-	 * The data should contain the date an item is `done`
-	 * If the `done` date is similar to current date, render it in the item list. Otherwise, don't render it.
-	 */
+	// put data in context
 	const openItemData = [
-		{itemTodo: '', isDone: false, createTS: new Date(), doneTS: null, isEditing: true},
-		{itemTodo: 'Beli telur', isDone: true, createTS: new Date(), doneTS: null, isEditing: false},
-		{itemTodo: 'Beli minyak', isDone: false, createTS: new Date(), doneTS: null, isEditing: false},
-		{itemTodo: 'Beli susu', isDone: true, createTS: new Date(), doneTS: null, isEditing: false},
-		{itemTodo: 'Beli mobil', isDone: false, createTS: new Date(), doneTS: null, isEditing: false}
+		{itemTodo: 'Beli telur', isDone: true},
+		{itemTodo: 'Beli minyak', isDone: false},
+		{itemTodo: 'Beli susu', isDone: true},
+		{itemTodo: 'Beli mobil', isDone: false}
 	];
 
-	console.log(openItemData);
 	const itemComponents = openItemData.map( (i, index) => {
 		return (
 			<Item
 				key={index}
 				id={index}
 				itemTodo={i.itemTodo}
-				isDone={i.isDone}
-				isEditing={i.isEditing}/>
+				isDone={i.isDone}/>
 		)
 	});
 
@@ -48,11 +40,10 @@ const App = () => {
 			<h1>My To-do app</h1>
 			<summary>Open list: {openItemData.length}</summary>
 
-			<AddButton/>
+			<ItemInput/>
 
 			<div
 				className={styles.itemContainer}>
-				
 				{itemComponents}
 			</div>
 

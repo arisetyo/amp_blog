@@ -29,10 +29,14 @@
 
 .App > .itemContainer {
 	margin: 10px 0;
-	padding: 6px;
-	border: 1px var(--main-fg) solid;
 	max-height: 300px;
 	overflow-y: scroll;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.App > .itemContainer::-webkit-scrollbar {
+  display: none;
 }
 
 .App > footer {

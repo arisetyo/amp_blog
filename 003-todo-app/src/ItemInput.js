@@ -4,23 +4,28 @@
  * @copyright 2021
  */
 
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import styles from './ItemInput.css';
-
+import ItemsContext from './ItemsContext';
 
 const ItemInput = ({id, itemTodo, isDone, isEditing}) => {
 
-  const [value, setValue] = useState('');
+  const [inputvalue, setInputvalue] = useState('');
+  
+  const {data, changeData} = useContext(ItemsContext);
 
   // handler for input change
   const changeHandler = e => {
     e.preventDefault();
-    setValue(e.target.value);
+    setInputvalue(e.target.value);
   }
 
   // handler for detecting Enter key (submit the item to Context)
   const keyDownHandler = e => {
-    if (e.keyCode === 13) console.log(`SUBMIT ITEM: ${value}`);
+    if (e.keyCode === 13) {
+      const newData = [...data, {itemTodo: inputvalue, isDone: false}];
+      changeData(newData);
+    }
   }
 
   return(

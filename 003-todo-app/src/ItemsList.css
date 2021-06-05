@@ -1,0 +1,16 @@
+/**
+ * @author Arie M. Prasetyo
+ * @copyright 2021
+ */
+
+.ItemsList {
+	margin: 10px 0;
+	max-height: 300px;
+	overflow-y: scroll;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.ItemsList::-webkit-scrollbar {
+  display: none;
+}

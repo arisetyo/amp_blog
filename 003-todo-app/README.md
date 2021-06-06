@@ -1,5 +1,10 @@
-Create a todo-app
+# Simple todo-app in React
 
-Use hooks (state, context)
+In this example I'll be using React hooks (state, context) & the web storage browser API.
 
-Use web storage
+## To run the app
+
+```
+$ npm install
+$ npm run dev
+```

@@ -33,7 +33,13 @@ const Item = ({itemId, itemTodo, isDone}) => {
     const objIndex = tempData.findIndex((obj => obj.itemId === itemId));
     tempData[objIndex].isDone = !tempData[objIndex].isDone;
 
+    // update the context
     changeData(tempData);
+
+    // update the local storage
+    if (typeof(Storage) !== 'undefined') {
+      localStorage.setItem('LocalListData', JSON.stringify(tempData));
+    }
   }
 
   return (

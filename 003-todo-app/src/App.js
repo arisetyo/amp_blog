@@ -16,8 +16,15 @@ import ItemsContext from './ItemsContext';
  */
 const App = () => {
 
+	// check whether there's a list stored in the local storage
+	let storedList = [];
+	if (typeof(Storage) !== 'undefined') {	
+		const localData = localStorage.getItem('LocalListData');
+		if (localData) storedList = JSON.parse(localData);
+	}
+
 	// provide a method to change the context
-	const [data,changeData] = useState([]);
+	const [data,changeData] = useState(storedList);
 
 	return (
 		<ItemsContext.Provider value={{data, changeData}}>

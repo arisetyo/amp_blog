@@ -25,9 +25,19 @@ const ItemInput = ({id, itemTodo, isDone, isEditing}) => {
   const keyDownHandler = async e => {
     if (e.keyCode === 13) {
       const newData = [...data, {itemId: uuidv4(), itemTodo: inputvalue, isDone: false}];
-      await changeData(newData);
+      await saveNewData(newData);
 
       setInputvalue('');
+    }
+  }
+
+  const saveNewData = newData => {
+    // update the context
+    changeData(newData);
+
+    // update the local storage
+    if (typeof(Storage) !== 'undefined') {
+      localStorage.setItem('LocalListData', JSON.stringify(newData));
     }
   }
 

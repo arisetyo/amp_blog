@@ -15,14 +15,14 @@
 	flex-direction: column;
 }
 
-.App > h1 {
+.App > header > h1 {
 	font-style: italic;
 	color: rgb(var(--primary-accent));
 	align-self: center;
 	margin-bottom: 24px;
 }
 
-.App > summary {
+.App > header > summary {
 	color: var(--main-fg);
 	font-size: 0.8em;
 }

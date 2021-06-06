@@ -22,10 +22,12 @@ const ItemInput = ({id, itemTodo, isDone, isEditing}) => {
   }
 
   // handler for detecting Enter key (submit the item to Context)
-  const keyDownHandler = e => {
+  const keyDownHandler = async e => {
     if (e.keyCode === 13) {
       const newData = [...data, {itemId: uuidv4(), itemTodo: inputvalue, isDone: false}];
-      changeData(newData);
+      await changeData(newData);
+
+      setInputvalue('');
     }
   }
 
@@ -33,6 +35,7 @@ const ItemInput = ({id, itemTodo, isDone, isEditing}) => {
     <div className={styles.ItemInput}>
       <input
         type="text"
+        value={inputvalue}
         onChange={changeHandler}
         onKeyDown={keyDownHandler}
         placeholder="Add item..."/>

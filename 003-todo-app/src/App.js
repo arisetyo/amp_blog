@@ -24,13 +24,15 @@ const App = () => {
 			<div
 				className={styles.App}>
 				
-				<h1>My To-do app</h1>
-				<summary>Open list: {data.length}</summary>
+				<header>
+					<h1>My To-do app</h1>
+					<summary>Open list: {data.length}</summary>
+					<summary>Completed list: {data.filter(d => d.isDone).length}</summary>
+				</header>
 
 				<ItemInput/>
 				<ItemsList/>
 
-				<summary>Completed list: 0</summary>
 				<footer>&copy; Arie M. Prasetyo, 2021</footer>
 
 			</div>

@@ -1,0 +1,47 @@
+/**
+ * @author Arie M. Prasetyo
+ * @copyright 2021
+ */
+
+ .App {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 12px;
+}
+
+.App > h1 {
+  font-style: italic;
+  color: rgb(var(--primary-accent));
+}
+
+.App p {
+  margin: 4pt 0;
+  color: var(--main-fg);
+}
+
+.App p > code {
+  color: rgb(var(--primary-accent));
+  font-family: var(--font-mono);
+  font-weight: bold;
+}
+
+.App div {
+  border: 1px solid burlywood;
+  padding: 8px;
+  margin-top: 8px;
+}
+
+.App span {
+  padding: 4px;
+  line-height: 2em;
+}
+
+.App button {
+  padding: 4px;
+  line-height: 2em;
+	border-radius: 4px;
+	cursor: pointer;
+}

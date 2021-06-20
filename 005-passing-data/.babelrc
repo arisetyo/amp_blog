@@ -1,0 +1,36 @@
+{
+	"presets": [
+		"@babel/preset-env",
+		"@babel/preset-react",
+		{
+			"plugins": [
+				"@babel/plugin-transform-runtime"
+			]
+		}
+	],
+	"plugins": [
+		["@babel/plugin-proposal-decorators", {"legacy": true}],
+		["@babel/plugin-proposal-object-rest-spread"],
+		"transform-class-properties",
+		"transform-react-stateless-component-name",
+		"react-css-modules"
+	],
+	"env": {
+		"production": {
+			"comments": false
+		},
+		"test": {
+			"presets": [
+				"@babel/preset-env",
+				"@babel/preset-react"
+			],
+			"plugins": [
+				["@babel/plugin-proposal-decorators", {"legacy": true}],
+				["@babel/plugin-proposal-object-rest-spread"],
+				"transform-class-properties",
+				"transform-react-stateless-component-name",
+				"react-css-modules"
+			]
+		}
+	}
+}

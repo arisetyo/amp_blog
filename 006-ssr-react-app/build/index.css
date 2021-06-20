@@ -1,0 +1,50 @@
+* {
+	font-family: 'Rubik', Arial, Helvetica, sans-serif;
+}
+
+/* Color theme: Fashion (Michelle Watt) */
+:root {
+	--main-bg: #FEFEFE;
+	--main-fg: #4a4a4a;
+	--primary-accent: 69, 144, 210;
+	--font-mono: 'Courier New', Courier, monospace;
+}
+
+html {
+	overflow: hidden;
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	overflow: auto;
+}
+
+/* RESET STYLING */
+body, p, h1, h2, div, span, ul {
+	margin: 0;
+	padding: 0;
+}
+
+article,
+aside,
+footer,
+header,
+nav,
+section {
+	display: block;
+}
+
+button {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+#root {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
